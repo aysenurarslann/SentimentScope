@@ -136,6 +136,15 @@ Bu projede, İstanbul Sözleşmesi hakkında sosyal medya platformu X (eski adı
 
 ---
 
+## 👩‍💻 Geliştirici
+
+- **Ad:** Ayşenur Arslan  
+- **Numara:** 211213057  
+- **Danışman:** Dr. Öğr. Üyesi Nurdan Baykan  
+- **Üniversite:** Konya Teknik Üniversitesi – Bilgisayar Mühendisliği
+
+---
+
 ## 📝 Lisans
 
 Bu proje yalnızca akademik kullanım içindir. İzinsiz kopyalanamaz. Bilgi alıntılamak için kaynak gösterilmesi gerekmektedir.
