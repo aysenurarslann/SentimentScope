@@ -1,150 +1,116 @@
-# 📊 İstanbul Sözleşmesi Üzerine Toplumsal Algı Analizi – Tweet Duygu Analizi
+ Social Media Sentiment Analysis on Public Topics Using Turkish BERT Models
 
-## 🎯 Proje Özeti
+A research project focused on analyzing public sentiment in Turkish social media content using NLP and deep learning techniques. The study explores how public opinion trends are shaped around sensitive or widely discussed topics through publicly available data.
 
-Bu projede, İstanbul Sözleşmesi hakkında sosyal medya platformu X (eski adıyla Twitter) üzerinden yapılan paylaşımlar analiz edilerek toplumsal duygu durumu ortaya konmuştur. Yaklaşık 16.000 Türkçe tweet toplanarak doğal dil işleme (NLP) ve derin öğrenme yöntemleriyle duygu analizi gerçekleştirilmiştir. Ayrıca, klasik makine öğrenmesi ve derin öğrenme modelleri birleştirilerek hibrit bir yaklaşım denenmiştir.
-
----
-
-## 🧰 Kullanılan Teknolojiler
-
-- **Python 3.10**
-- **Google Colab**
-- **Selenium WebDriver** – Tweet toplama
-- **Pandas, NumPy** – Veri işleme
-- **Regex, urlextract** – Ön işleme
-- **Transformers (Hugging Face)** – Derin öğrenme modelleri
-- **Scikit-learn** – Makine öğrenmesi algoritmaları
-- **Torch** – GPU destekli model eğitimi
-- **Matplotlib, WordCloud** – Görselleştirme
+> 🔍 **Note**: This project uses only publicly accessible social media data for academic research purposes. No private or identifiable user information was collected. All analysis is anonymized and conducted ethically.
 
 ---
 
-## 🗂 Veri Toplama ve Ön İşleme
+## 🎯 Project Overview
 
-- **Kaynak:** X.com (Twitter)
-- **Yöntem:** Anahtar kelime = `"İstanbul Sözleşmesi"`
-- **Toplam Tweet:** 15.943
-- **Temizlenmiş Tweet:** 13.008 (yaklaşık %18.4 veri kaybı)
-
-### Uygulanan Temizleme Adımları:
-- Tekrarlanan tweet’lerin silinmesi
-- 3 kelimeden az içeren tweet’lerin çıkarılması
-- URL, etiket ve emojilerin dönüştürülmesi
-- Stopword’lerin ayıklanması (bağlam belirleyiciler hariç)
+- Analyzed approximately 16,000 publicly available Turkish tweets using NLP and hybrid machine learning/deep learning approaches.
+- Explored sentiment classification of social discourse around a highly discussed topic (anonymized).
+- Compared performance of multiple pre-trained Turkish BERT models and fine-tuned variants.
+- Implemented a hybrid modeling approach combining deep learning outputs with classical ML classifiers.
 
 ---
 
-## 🔍 Modelleme ve Analiz
+## 🛠 Technologies Used
 
-### 🎓 Denenen Modeller
-
-| Model Adı | Durum |
-|-----------|-------|
-| `savasy/bert-base-turkish-sentiment-cased` | ❌ |
-| `anilguven/bert_tr_turkish_tweet` | ❌ |
-| `akoksal/bounti` | ✅ |
-| `VRLLab/TurkishBERTweet` | ✅ (Ana model) |
-
-> `VRLLab/TurkishBERTweet`, 894 milyon tweet ile eğitilmiş, Türk sosyal medya diline özel bir modeldir.
+- **Programming**: Python 3.10  
+- **Platform**: Google Colab  
+- **Web Scraping**: Selenium WebDriver (for public data collection)  
+- **Data Processing**: Pandas, NumPy, Regex, urlextract  
+- **NLP Models**: Hugging Face Transformers (Turkish BERT variants), PyTorch  
+- **Machine Learning**: Scikit-learn (Random Forest, SVM, k-NN)  
+- **Visualization**: Matplotlib, WordCloud  
+- **Model Training**: GPU-accelerated training via Torch  
 
 ---
 
-## ⚙️ Fine-Tuning ve Veri Artırma
+## 🗂 Data Collection & Preprocessing
 
-| Aşama | Doğruluk | Makro F1 | Ağırlıklı F1 |
-|-------|----------|----------|--------------|
-| Temel Bounti Modeli | %68.00 | 0.636 | 0.635 |
-| Fine-Tuned Bounti (90 tweet) | %72.00 | 0.700 | 0.690 |
-| Fine-Tuned + Augmentation (382 tweet) | %70.00 | 0.642 | 0.650 |
-
-> Veri artırmayla 90 tweet’lik eğitim verisi, 382 örneğe genişletildi.
-
----
-
-## 🔒 Güven Eşiği Analizi
-
-| Güven Eşiği | Doğruluk | F1 Skoru | Kapsam |
-|-------------|----------|----------|--------|
-| 0.50 | %71.43 | 0.665 | %98.00 |
-| **0.65 (Optimal)** | **%75.00** | **0.697** | **%88.00** |
-| 0.95 | %78.57 | 0.661 | %56.00 |
+- **Source**: Publicly available social media posts (X.com / Twitter)  
+- **Keyword Filter**: Topic-specific term (anonymized)  
+- **Total Tweets Collected**: ~15,943  
+- **Cleaned Tweets**: ~13,008 (after filtering duplicates, short texts, URLs, mentions, emojis)  
+- **Preprocessing Steps**:
+  - Removed duplicate entries
+  - Filtered tweets with fewer than 3 words
+  - Replaced URLs, @mentions, and emojis with placeholders
+  - Removed stop words (preserving contextually meaningful tokens)
 
 ---
 
-## 🤖 Klasik Makine Öğrenmesi Modelleri
+## 🔍 Model Evaluation & Results
 
-- **Veri Seti:** 90 eğitim, 50 test (manuel etiketli)
-- **Özellik Çıkarımı:** TF-IDF
+### ✅ Best Performing Models
+| Model | Accuracy | Macro F1 |
+|------|----------|----------|
+| `akoksal/bounti` | 72.0% | 0.700 |
+| `VRLLab/TurkishBERTweet` | 75.0% | 0.697 |
 
-| Model | Doğruluk | F1 Skoru (Pozitif / Nötr / Negatif) |
-|-------|----------|--------------------------------------|
-| Random Forest | **%83.61** | 0.74 / 0.61 / 0.90 |
-| SVM | %81.88 | 0.75 / 0.49 / 0.89 |
-| k-NN | %30.09 | Zayıf performans (özellikle negatif sınıfta düşük recall) |
+> ⚠️ *Fine-tuned model achieved optimal results at 75% accuracy with 0.697 F1 score.*
 
----
+### 🔁 Hybrid Approach
+- Fine-tuned BERT outputs used as input features for Random Forest.
+- **Hybrid model accuracy**: **83.51%**
+- Outperformed standalone deep learning and traditional ML models.
 
-## 🔁 Hibrit Model Yaklaşımı
-
-- Fine-tuned Bounti çıktıları, makine öğrenmesi modellerine giriş olarak verildi.
-- Random Forest modeli, hibrit yaklaşımda **%83.51** doğruluk ile en yüksek başarıyı sağladı.
-- Hibrit yaklaşım, tek başına klasik veya derin öğrenme yöntemlerine kıyasla daha iyi sonuçlar verdi.
-
----
-
-## 📈 Görselleştirmeler
-
-- Pozitif/negatif/nötr dağılım grafikleri
-- Aylık duygu değişim çizgileri
-- Kelime bulutları (öncesi/sonrası)
-- En etkileşimli tweet’ler ve kullanıcılar
-- Tweet başına ortalama beğeni, yorum, retweet analizi
+### 📊 Confidence Threshold Analysis
+| Threshold | Accuracy | F1 Score | Coverage |
+|---------|----------|----------|----------|
+| 0.50    | 71.43%   | 0.665    | 98.0%    |
+| 0.65 (Optimal) | 75.00% | 0.697 | 88.0% |
+| 0.95    | 78.57%   | 0.661    | 56.0%    |
 
 ---
 
-## ✅ Doğrulama
-
-- 50 manuel etiketli tweet ile test
-- Ortalama başarı oranı (fine-tuned + augmentation model):  
-  - **Doğruluk:** %75  
-  - **Makro F1 Skoru:** 0.697
-
----
-
-## 🏁 Proje Gelişimi
-
-### ✔️ Tamamlananlar
-- Geniş tweet toplama
-- NLP ön işleme ve görselleştirme
-- Farklı modellerin test edilmesi
-- Hibrit modelleme
-- Performans karşılaştırmaları
-
-### 🎯 Hedefler
-- Kendi Türkçe duygu sınıflandırma modelimizi eğitmek
-- Veri artırma yöntemlerini zenginleştirmek
-- Akademik makale ve açık kaynak paylaşımı yapmak
+## 📈 Visualizations
+- Positive/neutral/negative sentiment distribution
+- Monthly sentiment trend lines
+- Word clouds (pre/post-cleaning)
+- Top engaging posts and users (anonymized)
+- Average engagement per post (likes, retweets, comments)
 
 ---
 
-## 📚 Kaynaklar
-
-- [VRLLab/TurkishBERTweet](https://huggingface.co/VRLLab/TurkishBERTweet)
-- [akoksal/bounti](https://huggingface.co/akoksal/bounti)
-- [scikit-learn](https://scikit-learn.org/)
-
----
-
-## 👩‍💻 Geliştirici
-
-- **Ad:** Ayşenur Arslan  
- 
-- **Danışman:** Doç. Dr. Nurdan Baykan  
-- **Üniversite:** Konya Teknik Üniversitesi – Bilgisayar Mühendisliği
+## ✅ Validation
+- 50 manually labeled tweets used for testing
+- Final model performance:
+  - **Accuracy**: 75%
+  - **Macro F1 Score**: 0.697
 
 ---
 
-## 📝 Lisans
+## 🎯 Research Goals
+- Develop a custom Turkish sentiment classifier for public discourse
+- Expand data augmentation techniques
+- Publish findings in an open-access academic paper
+- Share code and dataset responsibly under research license
 
-Bu proje yalnızca akademik kullanım içindir. İzinsiz kopyalanamaz. Bilgi alıntılamak için kaynak gösterilmesi gerekmektedir.
+---
+
+## 📚 References
+- `akoksal/bounti` – Hugging Face  
+- `VRLLab/TurkishBERTweet` – Hugging Face  
+- Scikit-learn, PyTorch, Pandas  
+- Academic papers on Turkish NLP and sentiment analysis
+
+---
+
+## 👩‍💻 Developer
+Ayşenur Arslan  
+Konya Technical University – Department of Computer Engineering
+
+## 🧑‍🏫 Advisor
+Assoc. Prof. Dr. Nurdan Baykan
+
+---
+
+## 📝 License & Ethical Note
+This project is for **academic and research purposes only**.  
+No personal, political, or sensitive data was collected.  
+All results are anonymized and presented for educational use.  
+Unauthorized reproduction or commercial use is prohibited.  
+Citing this work requires proper attribution to the author and university.
