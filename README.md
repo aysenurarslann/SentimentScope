@@ -1,4 +1,4 @@
- Social Media Sentiment Analysis on Public Topics Using Turkish BERT Models
+# Social Media Sentiment Analysis on Public Topics Using Turkish BERT Models
 
 A research project focused on analyzing public sentiment in Turkish social media content using NLP and deep learning techniques. The study explores how public opinion trends are shaped around sensitive or widely discussed topics through publicly available data.
 
@@ -8,7 +8,7 @@ A research project focused on analyzing public sentiment in Turkish social media
 
 ## 🎯 Project Overview
 
-- Analyzed approximately 16,000 publicly available Turkish tweets using NLP and hybrid machine learning/deep learning approaches.
+- Analyzed Turkish tweets using NLP and hybrid machine learning/deep learning approaches.
 - Explored sentiment classification of social discourse around a highly discussed topic (anonymized).
 - Compared performance of multiple pre-trained Turkish BERT models and fine-tuned variants.
 - Implemented a hybrid modeling approach combining deep learning outputs with classical ML classifiers.
@@ -32,8 +32,6 @@ A research project focused on analyzing public sentiment in Turkish social media
 
 - **Source**: Publicly available social media posts (X.com / Twitter)  
 - **Keyword Filter**: Topic-specific term (anonymized)  
-- **Total Tweets Collected**: ~15,943  
-- **Cleaned Tweets**: ~13,008 (after filtering duplicates, short texts, URLs, mentions, emojis)  
 - **Preprocessing Steps**:
   - Removed duplicate entries
   - Filtered tweets with fewer than 3 words
@@ -99,12 +97,6 @@ A research project focused on analyzing public sentiment in Turkish social media
 
 ---
 
-## 👩‍💻 Developer
-Ayşenur Arslan  
-Konya Technical University – Department of Computer Engineering
-
-## 🧑‍🏫 Advisor
-Assoc. Prof. Dr. Nurdan Baykan
 
 ---
 
@@ -112,5 +104,3 @@ Assoc. Prof. Dr. Nurdan Baykan
 This project is for **academic and research purposes only**.  
 No personal, political, or sensitive data was collected.  
 All results are anonymized and presented for educational use.  
-Unauthorized reproduction or commercial use is prohibited.  
-Citing this work requires proper attribution to the author and university.
