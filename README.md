@@ -33,8 +33,8 @@ This **academic research project** aims to reveal public sentiment patterns by a
 |------------|--------|
 | savasy/bert-base-turkish-sentiment-cased | ❌ |
 | anilguven/bert_tr_turkish_tweet | ❌ |
-| akoksal/bounti | ✅ |
-| VRLLab/TurkishBERTweet | ✅ (Main model) |
+| akoksal/bounti | ✅ |(Main model)
+| VRLLab/TurkishBERTweet | ✅  |
 
 VRLLab/TurkishBERTweet is a specialized model trained on 894 million tweets, designed for Turkish social media language.
 
